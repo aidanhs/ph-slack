@@ -160,7 +160,7 @@ class Revision(Subscriable):
     def _fill_data(self, data):
         self._id = data['id']
         self._url = data['uri']
-        cc_phids = data['reviewers'] + data['ccs']
+        cc_phids = [data['authorPHID']] + data['reviewers'].keys() + data['ccs']
         cc_objs = [
             self.phabricator.get_object_by_phid(phid)
             for phid in cc_phids
@@ -241,14 +241,12 @@ class Phabricator(object):
         'PROJ': Project,
     }
 
-    def __init__(self, host=None, username=None, cert=None):
+    def __init__(self, host=None, token=None):
         self.client = phabricator.Phabricator()
         if host is not None:
             self.client.host = host
-        if username is not None:
-            self.client.username = username
-        if cert is not None:
-            self.client.certificate = cert
+        if token is not None:
+            self.client.token = token
 
     def get_object_type_by_phid(self, phid):
         type_ = self._recognize_phid_type(phid)

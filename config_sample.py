@@ -2,9 +2,7 @@
 
 PHABRICATOR_HOST = 'http://ph.your.domain/api/'
 
-PHABRICATOR_USER = 'ph-username'
-
-PHABRICATOR_CERT = 'ph-cert'
+PHABRICATOR_TOKEN = 'ph-token'
 
 SLACK_AUTH_TOKEN = 'slake auth token'
 

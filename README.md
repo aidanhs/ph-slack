@@ -34,7 +34,7 @@ Here we go.
 First, clone code and build:
 
 ```bash
-$ git clone git@github.com:psjay/ph-slack.git
+$ git clone https://github.com/aidanhs/ph-slack.git
 $ cd ph-slack
 $ python bootstrap.py
 $ bin/buildout
@@ -53,9 +53,7 @@ Modify `config.py` like this:
 ```
 PHABRICATOR_HOST = 'http://ph.your.domain/api/'
 
-PHABRICATOR_USER = 'ph-bot-name'
-
-PHABRICATOR_CERT = 'ph-bot-cert'
+PHABRICATOR_TOKEN = 'ph-token'
 
 SLACK_AUTH_TOKEN = 'slack api token'
 
