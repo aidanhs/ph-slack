@@ -136,7 +136,7 @@ class Task(Subscriable):
     def _fill_data(self, data):
         self._id = data['id']
         self._url = data['uri']
-        cc_phids = data['ccPHIDs']
+        cc_phids = [data['ownerPHID']] + data['ccPHIDs']
         cc_objs = [
             self.phabricator.get_object_by_phid(phid)
             for phid in cc_phids
@@ -242,11 +242,7 @@ class Phabricator(object):
     }
 
     def __init__(self, host=None, token=None):
-        self.client = phabricator.Phabricator()
-        if host is not None:
-            self.client.host = host
-        if token is not None:
-            self.client.token = token
+        self.client = phabricator.Phabricator(host=host, token=token)
 
     def get_object_type_by_phid(self, phid):
         type_ = self._recognize_phid_type(phid)
